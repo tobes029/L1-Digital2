@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://coqonnxxcjhl6"]
+
+[ext_resource type="Script" uid="uid://dge0n3ebyqjws" path="res://scripts/player.gd" id="1_b4j7a"]
+[ext_resource type="Texture2D" uid="uid://bqyjwb0twd5fv" path="res://sprites/Screenshot 2026-06-02 12.11.27.png" id="2_wo48x"]
+[ext_resource type="Script" uid="uid://blkec63w63roo" path="res://scenes/platform.gd" id="3_y0kc7"]
+[ext_resource type="Texture2D" uid="uid://dqe6wt3wud3dq" path="res://icon.svg" id="4_ne2mo"]
+[ext_resource type="Script" uid="uid://b61hekfnuu2pl" path="res://scenes/portal.gd" id="5_6cvei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bswci"]
+size = Vector2(65, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xbjy"]
+size = Vector2(618.5, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15wb7"]
+size = Vector2(57.999985, 140)
+
+[node name="level2" type="Node2D" unique_id=161180971]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2118715107]
+position = Vector2(165, 268)
+script = ExtResource("1_b4j7a")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=378282352]
+position = Vector2(0.5000057, -3.5000026)
+scale = Vector2(0.12999997, 0.12287335)
+texture = ExtResource("2_wo48x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=635132609]
+position = Vector2(-4.172325e-07, -3.5)
+shape = SubResource("RectangleShape2D_bswci")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2088393374]
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1479048436]
+position = Vector2(-607, 320)
+script = ExtResource("3_y0kc7")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform" unique_id=399272911]
+position = Vector2(450, 303.99997)
+scale = Vector2(4.8359375, 0.3046875)
+texture = ExtResource("4_ne2mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=537227743]
+position = Vector2(449.25, 304.5)
+shape = SubResource("RectangleShape2D_5xbjy")
+
+[node name="Platform2" type="StaticBody2D" parent="." unique_id=1848897158]
+position = Vector2(17, 314)
+script = ExtResource("3_y0kc7")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform2" unique_id=669923214]
+position = Vector2(441.25, 303.99997)
+scale = Vector2(4.6992188, 0.3046875)
+texture = ExtResource("4_ne2mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2" unique_id=280876547]
+position = Vector2(443.75, 304.5)
+shape = SubResource("RectangleShape2D_5xbjy")
+
+[node name="Platform3" type="StaticBody2D" parent="." unique_id=1758953259]
+position = Vector2(-550, -334)
+script = ExtResource("3_y0kc7")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform3" unique_id=990598996]
+position = Vector2(441.25, 303.99997)
+scale = Vector2(4.6992188, 0.3046875)
+texture = ExtResource("4_ne2mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3" unique_id=755859917]
+position = Vector2(443.75, 304.5)
+shape = SubResource("RectangleShape2D_5xbjy")
+
+[node name="Platform4" type="StaticBody2D" parent="." unique_id=1156717006]
+position = Vector2(69, -331)
+script = ExtResource("3_y0kc7")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform4" unique_id=1742213311]
+position = Vector2(441.25, 303.99997)
+scale = Vector2(4.6992188, 0.3046875)
+texture = ExtResource("4_ne2mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4" unique_id=2035292107]
+position = Vector2(443.75, 304.5)
+shape = SubResource("RectangleShape2D_5xbjy")
+
+[node name="portal" type="Area2D" parent="." unique_id=1981332997]
+script = ExtResource("5_6cvei")
+next_scene = "uid://coqonnxxcjhl6"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal" unique_id=1961121549]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_15wb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="portal" unique_id=1761669335]
+position = Vector2(1.0000038, 0.9999957)
+scale = Vector2(0.46875006, 1.1249999)
+texture = ExtResource("4_ne2mo")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=55530985]
+
+[connection signal="body_entered" from="portal" to="portal" method="_on_body_entered"]
