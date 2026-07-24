@@ -16,7 +16,7 @@ size = Vector2(107.5, 110)
 size = Vector2(27, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15mv3"]
-size = Vector2(107, 108)
+size = Vector2(114, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xbjy"]
 size = Vector2(8306, 240)
@@ -31,7 +31,7 @@ size = Vector2(100, 104)
 size = Vector2(99, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3sih"]
-size = Vector2(98, 103)
+size = Vector2(107, 111)
 
 [node name="level1" type="Node2D" unique_id=161180971]
 
@@ -66,7 +66,7 @@ collision_mask = 0
 script = ExtResource("8_2y5yt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hurtbox" unique_id=1902490769]
-position = Vector2(-20, -26)
+position = Vector2(-22, -26)
 shape = SubResource("RectangleShape2D_15mv3")
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=1479048436]
@@ -126,7 +126,7 @@ position = Vector2(342.5, 2992.5)
 shape = SubResource("RectangleShape2D_4nkto")
 
 [node name="Enemy" type="CharacterBody2D" parent="." unique_id=2008777798]
-position = Vector2(568, 568)
+position = Vector2(473, 539)
 script = ExtResource("6_e3sih")
 metadata/_edit_group_ = true
 
@@ -149,10 +149,19 @@ position = Vector2(22.5, -15)
 shape = SubResource("RectangleShape2D_go7sj")
 
 [node name="Hitbox" type="Area2D" parent="Enemy" unique_id=1218173668]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("3_15mv3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Hitbox" unique_id=113568649]
-position = Vector2(22, -14.5)
+position = Vector2(21.5, -15.5)
 shape = SubResource("RectangleShape2D_e3sih")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1498832943]
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="HUD" unique_id=251009075]
+offset_left = 42.0
+offset_top = 32.0
+offset_right = 134.0
+offset_bottom = 63.0
+step = 10.0
