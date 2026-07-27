@@ -23,8 +23,8 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	
 	# attack disabled by default, will ust wander around and stuff until its aggrivated
-	if enemy_hitbox_shape:
-		enemy_hitbox_shape.disabled = true
+	#if enemy_hitbox_shape:
+		#enemy_hitbox_shape.disabled = true
 	
 	# set up the health bar UI initial values
 	if health_bar:

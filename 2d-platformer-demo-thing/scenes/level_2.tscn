@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dge0n3ebyqjws" path="res://scripts/player.gd" id="1_b4j7a"]
 [ext_resource type="Texture2D" uid="uid://bqyjwb0twd5fv" path="res://sprites/Screenshot 2026-06-02 12.11.27.png" id="2_wo48x"]
-[ext_resource type="Script" uid="uid://blkec63w63roo" path="res://scenes/platform.gd" id="3_y0kc7"]
-[ext_resource type="Texture2D" uid="uid://dqe6wt3wud3dq" path="res://icon.svg" id="4_ne2mo"]
-[ext_resource type="Script" uid="uid://b61hekfnuu2pl" path="res://scenes/portal.gd" id="5_6cvei"]
+[ext_resource type="Script" uid="uid://blkec63w63roo" path="res://scripts/platform.gd" id="3_y0kc7"]
+[ext_resource type="Texture2D" uid="uid://dqe6wt3wud3dq" path="res://sprites/icon.svg" id="4_ne2mo"]
+[ext_resource type="Script" path="res://scenes/portal.gd" id="5_6cvei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bswci"]
 size = Vector2(65, 65)
