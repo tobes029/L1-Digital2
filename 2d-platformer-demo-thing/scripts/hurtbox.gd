@@ -2,19 +2,17 @@ extends Area2D
 class_name Hurtbox
 
 func _ready() -> void:
-	area_entered.connect(_on_area_entered)
+	if not area_entered.is_connected(_on_area_entered):
+		area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		# Get the node this Hurtbox belongs to
-		var my_owner = owner if owner else get_parent()
-		print("Hurtbox on '", my_owner.name, "' detected a strike from '", area.name, "'!")
+		# Target the immediate character parent, NOT the scene root (level1)
+		var target = get_parent()
 		
-		# Look for take_damage on the direct parent or owner
-		var entity = get_parent()
-		if entity and entity.has_method("take_damage"):
+		if target and target.has_method("take_damage"):
 			var dmg = area.damage if "damage" in area else 10
-			print("Dealing ", dmg, " damage to: ", entity.name)
-			entity.take_damage(dmg)
+			target.take_damage(dmg)
+			print("SUCCESS: Dealt ", dmg, " damage to ", target.name)
 		else:
-			print("ERROR: ", get_parent().name, " does not have take_damage()!")
+			print("FAIL: ", target.name if target else "Null", " does not have take_damage()!")

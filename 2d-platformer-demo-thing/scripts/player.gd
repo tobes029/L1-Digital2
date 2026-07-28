@@ -7,29 +7,57 @@ signal player_died
 @export var max_health: int = 100
 
 @onready var health: int = max_health
-@onready var axe_hitbox_shape = $AxeHitbox/CollisionShape2D
+@onready var axe_hitbox_shape = $AxeHitbox/CollisionShape2D if has_node("AxeHitbox/CollisionShape2D") else null
+@onready var hurtbox: Area2D = $Hurtbox if has_node("Hurtbox") else null
 
 # UI References
-@onready var health_bar: ProgressBar = $HUD/PlayerHealthBar 
-@onready var portrait: TextureRect = $HUD/Portrait
+var health_bar: ProgressBar = null
+var portrait: TextureRect = null
 
-# Load your face sprites here (change paths to match your actual files!)
+# Face sprites
 var face_full = preload("res://sprites/full_health.png")
 var face_half = preload("res://sprites/half_health.png")
 var face_low = preload("res://sprites/low_health.png")
 
 func _ready() -> void:
+	# Forces Godot to draw red/blue collision boxes when you run the game
+	get_tree().debug_collisions_hint = true
+
+func ready() -> void:
+	get_tree().debug_collisions_hint = true
+	
+	if axe_hitbox_shape:
+		print("FOUND AXE SHAPE SUCCESSFULLY!")
+		axe_hitbox_shape.disabled = true
+	else:
+		print("ERROR: Could not find node path '$AxeHitbox/CollisionShape2D'!")
+		
+	if has_node("HUD/PlayerHealthBar"):
+		health_bar = $HUD/PlayerHealthBar
+		
+	if has_node("HUD/Portrait"):
+		portrait = $HUD/Portrait
+
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = health
 	
-	# sets initial portrait
 	_update_portrait()
+	
+	# Connect hurtbox directly to test collision detection
+	if hurtbox:
+		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+		print("Player Hurtbox successfully connected!")
+	else:
+		print("CRITICAL ERROR: Player script could not find '$Hurtbox' node!")
 
 func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
 	move_and_slide()
+	# Checks for your custom "attack" action mapped to Spacebar!
+	if Input.is_action_just_pressed("attack"):
+		attack()
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		attack()
@@ -41,9 +69,16 @@ func attack() -> void:
 		await get_tree().create_timer(0.2).timeout
 		axe_hitbox_shape.disabled = true
 
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	print("PLAYER HURTBOX TOUCHED BY: ", area.name)
+	if area is Hitbox or "damage" in area:
+		var dmg = area.damage if "damage" in area else 10
+		take_damage(dmg)
+
 func take_damage(amount: int) -> void:
 	health -= amount
 	print("Player took damage! Health left: ", health)
+	health_changed.emit(health)
 	
 	if health_bar:
 		health_bar.value = health
@@ -53,13 +88,10 @@ func take_damage(amount: int) -> void:
 	if health <= 0:
 		die()
 
-# portrait updater logic
-
 func _update_portrait() -> void:
 	if not portrait:
 		return
 		
-	# Calculate health percentage (0.0 to 1.0)
 	var health_percent: float = float(health) / float(max_health)
 	
 	if health_percent > 0.6:
