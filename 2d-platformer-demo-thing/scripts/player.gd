@@ -6,16 +6,20 @@ signal player_died
 @export var speed: float = 200.0
 @export var max_health: int = 100
 
+
 @onready var health: int = max_health
 @onready var axe_hitbox_shape = $Pivot/AxeHitbox/CollisionShape2D if has_node("Pivot/AxeHitbox/CollisionShape2D") else null
 @onready var hurtbox: Area2D = $Hurtbox if has_node("Hurtbox") else null
 @onready var pivot: Node2D = $Pivot if has_node("Pivot") else null
+@export var death_screen_scene: PackedScene
 
 # UI References
 var health_bar: ProgressBar = null
 var portrait: TextureRect = null
 
+
 # Face sprites
+#var death_screen_scene = preload("res://scenes/respawn.gd")
 var face_full = preload("res://sprites/full_health.png")
 var face_half = preload("res://sprites/half_health.png")
 var face_low = preload("res://sprites/low_health.png")
@@ -102,4 +106,4 @@ func _update_portrait() -> void:
 func die() -> void:
 	print("Player died! Game Over.")
 	player_died.emit()
-	queue_free()
+	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")

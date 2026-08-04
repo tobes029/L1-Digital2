@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://daj75l1uou467"]
+
+[ext_resource type="Script" uid="uid://8p0j8xufurvn" path="res://scenes/respawn.gd" id="1_pevhg"]
+[ext_resource type="Texture2D" uid="uid://k7vdjeo7x0xx" path="res://sprites/Death_screen.png" id="2_afy8x"]
+
+[node name="Start screen" type="CanvasLayer" unique_id=1688203750]
+process_mode = 3
+script = ExtResource("1_pevhg")
+
+[node name="Control" type="Control" parent="." unique_id=1251845379]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1334781302]
+position = Vector2(571.5, 324.5)
+scale = Vector2(1.209375, 1.2363281)
+texture = ExtResource("2_afy8x")
+
+[node name="respawn" type="Button" parent="Control" unique_id=1804508669]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -28.157001
+anchor_top = -15.863001
+offset_left = 1478.28
+offset_top = 1165.52
+offset_right = 798.0
+offset_bottom = 637.0
+
+[node name="TextEdit" type="TextEdit" parent="Control/respawn" unique_id=1155185515]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 32.0
+offset_right = 260.0
+offset_bottom = 72.0
+text = "Respawn"
+
+[connection signal="pressed" from="Control/respawn" to="." method="_on_respawn_pressed"]

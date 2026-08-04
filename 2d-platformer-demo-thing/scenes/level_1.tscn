@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://dge0n3ebyqjws" path="res://scripts/player.gd" id="1_bswci"]
 [ext_resource type="Texture2D" uid="uid://corhatk0tj43m" path="res://sprites/yellow house.png" id="2_2aecg"]
 [ext_resource type="Texture2D" uid="uid://bqyjwb0twd5fv" path="res://sprites/Screenshot 2026-06-02 12.11.27.png" id="2_5xbjy"]
+[ext_resource type="Texture2D" uid="uid://df3vxwy06a2aw" path="res://sprites/2houseyellow.png" id="3_6dial"]
 [ext_resource type="Script" uid="uid://cj7fkvvfb02rs" path="res://scripts/hitbox.gd" id="3_15mv3"]
 [ext_resource type="Script" uid="uid://blkec63w63roo" path="res://scripts/platform.gd" id="3_rus8k"]
 [ext_resource type="Texture2D" uid="uid://ckcx2j214f83v" path="res://sprites/axe.png" id="4_2y5yt"]
+[ext_resource type="Texture2D" uid="uid://deriqcwuoj8cg" path="res://sprites/2house4E.png" id="4_7nomh"]
 [ext_resource type="Texture2D" uid="uid://bbfsa3dt0muys" path="res://sprites/enemy1.png" id="5_4nkto"]
 [ext_resource type="Script" uid="uid://bjrkq6rqfdp2d" path="res://scripts/enemy.gd" id="6_e3sih"]
 [ext_resource type="Script" uid="uid://dabmb0j3p2esh" path="res://scripts/hurtbox.gd" id="8_2y5yt"]
@@ -14,7 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://dtbc55wm6p0y0" path="res://sprites/Screenshot 2026-07-30 113416.png" id="11_2os1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjh4j"]
-size = Vector2(94.43193, 89.48096)
+size = Vector2(94.43193, 99.77197)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ry35u"]
+size = Vector2(374.2787, 98.96911)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72hxc"]
+size = Vector2(230.84685, 322.74445)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tehw"]
+size = Vector2(153.42215, 211.80562)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15mv3"]
 size = Vector2(114, 118)
@@ -50,25 +61,119 @@ scale = Vector2(8.408174, 6.850622)
 texture = ExtResource("11_2os1m")
 
 [node name="TextEdit" type="TextEdit" parent="temporary background" unique_id=1332862041]
-offset_left = -477.98727
-offset_top = 287.56512
-offset_right = -310.53116
-offset_bottom = 324.4961
+offset_left = -309.93652
+offset_top = 277.49304
+offset_right = -133.79837
+offset_bottom = 319.53302
 text = "Spacebar to Attack!
 
 "
+placeholder_text = "Spacebar to attack
+"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temporary background" unique_id=1761321292]
+[node name="TextEdit2" type="TextEdit" parent="temporary background" unique_id=1907130380]
+offset_left = 291.26422
+offset_top = 292.82013
+offset_right = 406.27136
+offset_bottom = 332.96246
+text = "UNFINISHED
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/StaticBody2D" unique_id=77201816]
+"
+placeholder_text = "Spacebar to attack
+"
+
+[node name="House" type="StaticBody2D" parent="temporary background" unique_id=1761321292]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House" unique_id=77201816]
 position = Vector2(-53.87616, -150.27832)
 scale = Vector2(0.9999999, 1)
 shape = SubResource("RectangleShape2D_pjh4j")
 
-[node name="Sprite2D" type="Sprite2D" parent="temporary background/StaticBody2D" unique_id=698841222]
+[node name="Sprite2D" type="Sprite2D" parent="temporary background/House" unique_id=698841222]
 position = Vector2(-53.638294, -161.8831)
 scale = Vector2(0.1051107, 0.11347051)
 texture = ExtResource("2_2aecg")
+
+[node name="House6" type="StaticBody2D" parent="temporary background" unique_id=972231223]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House6" unique_id=1958343096]
+position = Vector2(-155.56293, 221.58572)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_pjh4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="temporary background/House6" unique_id=1002282352]
+position = Vector2(-153.30322, 217.20653)
+scale = Vector2(0.1051107, 0.11347051)
+texture = ExtResource("2_2aecg")
+
+[node name="House5" type="StaticBody2D" parent="temporary background" unique_id=1643614025]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House5" unique_id=737580649]
+position = Vector2(-288.172, 221.58572)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_pjh4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="temporary background/House5" unique_id=927644488]
+position = Vector2(-288.8856, 216.03874)
+scale = Vector2(0.1051107, 0.11347051)
+texture = ExtResource("2_2aecg")
+
+[node name="House4" type="StaticBody2D" parent="temporary background" unique_id=390791645]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House4" unique_id=999329005]
+position = Vector2(-416.97522, 219.25018)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_pjh4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="temporary background/House4" unique_id=343730923]
+position = Vector2(-419.59177, 212.82741)
+scale = Vector2(0.1051107, 0.11347051)
+texture = ExtResource("2_2aecg")
+
+[node name="House3" type="StaticBody2D" parent="temporary background" unique_id=131685633]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House3" unique_id=479283055]
+position = Vector2(-312.7909, -156.48213)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_pjh4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="temporary background/House3" unique_id=1825251741]
+position = Vector2(-312.553, -176.58981)
+scale = Vector2(0.108014345, 0.1086238)
+texture = ExtResource("3_6dial")
+
+[node name="House2" type="StaticBody2D" parent="temporary background" unique_id=858961661]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House2" unique_id=438315229]
+position = Vector2(-178.2789, -156.37265)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_pjh4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="temporary background/House2" unique_id=268099027]
+position = Vector2(-178.0113, -171.62674)
+scale = Vector2(0.10516879, 0.102351554)
+texture = ExtResource("4_7nomh")
+
+[node name="NotAllowed" type="StaticBody2D" parent="temporary background" unique_id=52353644]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/NotAllowed" unique_id=1823446266]
+position = Vector2(-287.63678, 112.83647)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_ry35u")
+
+[node name="NotAllowed2" type="StaticBody2D" parent="temporary background" unique_id=666025971]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/NotAllowed2" unique_id=279583715]
+position = Vector2(95.56174, 162.9779)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_72hxc")
+
+[node name="NotAllowed3" type="StaticBody2D" parent="temporary background" unique_id=176221342]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/NotAllowed3" unique_id=1276289990]
+position = Vector2(86.10666, -139.03848)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_2tehw")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2118715107]
 position = Vector2(-133, 558)
@@ -271,6 +376,36 @@ collision_mask = 2
 script = ExtResource("3_15mv3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/Hitbox" unique_id=1137640114]
+position = Vector2(22, -15)
+shape = SubResource("RectangleShape2D_e3sih")
+
+[node name="Enemy7" type="CharacterBody2D" parent="." unique_id=511981221]
+position = Vector2(3160, 468)
+script = ExtResource("6_e3sih")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7" unique_id=1411507789]
+position = Vector2(22, -15)
+shape = SubResource("RectangleShape2D_fcfvj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy7" unique_id=1286216438]
+position = Vector2(24.5, -17.000004)
+scale = Vector2(0.09667964, 0.10546874)
+texture = ExtResource("5_4nkto")
+
+[node name="Hurtbox" type="Area2D" parent="Enemy7" unique_id=384935581]
+script = ExtResource("8_2y5yt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7/Hurtbox" unique_id=1012495739]
+position = Vector2(22, -15)
+shape = SubResource("RectangleShape2D_go7sj")
+
+[node name="Hitbox" type="Area2D" parent="Enemy7" unique_id=834119339]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_15mv3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7/Hitbox" unique_id=2039109944]
 position = Vector2(22, -15)
 shape = SubResource("RectangleShape2D_e3sih")
 
