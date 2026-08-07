@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://daj75l1uou467"]
+
+[ext_resource type="Script" uid="uid://cxmnaknbsrdyx" path="res://start_screen.gd" id="1_o7i0r"]
+[ext_resource type="Texture2D" uid="uid://bxv0dowqc33yw" path="res://sprites/start screen.png" id="2_he1sj"]
+
+[node name="Start screen" type="CanvasLayer" unique_id=1688203750]
+process_mode = 3
+script = ExtResource("1_o7i0r")
+
+[node name="Control" type="Control" parent="." unique_id=1251845379]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1334781302]
+position = Vector2(576.5, 320)
+scale = Vector2(0.9973959, 0.9876543)
+texture = ExtResource("2_he1sj")
+
+[node name="start" type="Button" parent="Control" unique_id=1804508669]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -28.157001
+anchor_top = -15.863001
+offset_left = 1506.28
+offset_top = 1124.52
+offset_right = 763.0
+offset_bottom = 619.0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+
+[connection signal="pressed" from="Control/start" to="." method="_on_start_pressed"]

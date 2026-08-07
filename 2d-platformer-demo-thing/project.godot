@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jame and Tob game"
-run/main_scene="uid://bowv31tnfmvyx"
+run/main_scene="uid://daj75l1uou467"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://sprites/icon.svg"
 

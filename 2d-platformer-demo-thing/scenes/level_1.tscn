@@ -37,7 +37,7 @@ size = Vector2(35, 62)
 size = Vector2(107.5, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xbjy"]
-size = Vector2(8306, 240)
+size = Vector2(8722, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nkto"]
 size = Vector2(402.99982, 5413)
@@ -244,7 +244,7 @@ scale = Vector2(65.76953, 1.9335941)
 texture = ExtResource("1_014kd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=537227743]
-position = Vector2(4361, 412.5)
+position = Vector2(4569, 412.5)
 shape = SubResource("RectangleShape2D_5xbjy")
 
 [node name="Platform2" type="StaticBody2D" parent="." unique_id=604229170]
