@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dqe6wt3wud3dq" path="res://sprites/icon.svg" id="1_014kd"]
 [ext_resource type="Script" uid="uid://dge0n3ebyqjws" path="res://scripts/player.gd" id="1_bswci"]
 [ext_resource type="Texture2D" uid="uid://corhatk0tj43m" path="res://sprites/yellow house.png" id="2_2aecg"]
-[ext_resource type="Texture2D" uid="uid://bqyjwb0twd5fv" path="res://sprites/Screenshot 2026-06-02 12.11.27.png" id="2_5xbjy"]
 [ext_resource type="Texture2D" uid="uid://df3vxwy06a2aw" path="res://sprites/2houseyellow.png" id="3_6dial"]
 [ext_resource type="Script" uid="uid://cj7fkvvfb02rs" path="res://scripts/hitbox.gd" id="3_15mv3"]
 [ext_resource type="Script" uid="uid://blkec63w63roo" path="res://scripts/platform.gd" id="3_rus8k"]
@@ -12,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bbfsa3dt0muys" path="res://sprites/enemy1.png" id="5_4nkto"]
 [ext_resource type="Script" uid="uid://bjrkq6rqfdp2d" path="res://scripts/enemy.gd" id="6_e3sih"]
 [ext_resource type="Script" uid="uid://dabmb0j3p2esh" path="res://scripts/hurtbox.gd" id="8_2y5yt"]
+[ext_resource type="Texture2D" uid="uid://cgnk66w4f3p6t" path="res://sprites/playerright.png" id="9_2aecg"]
 [ext_resource type="Texture2D" uid="uid://diqks2if6qmjl" path="res://sprites/full_health.png" id="9_e3sih"]
 [ext_resource type="Texture2D" uid="uid://dtbc55wm6p0y0" path="res://sprites/Screenshot 2026-07-30 113416.png" id="11_2os1m"]
+[ext_resource type="Script" uid="uid://byg4v6h0xe2i6" path="res://npc.gd" id="15_6dial"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjh4j"]
 size = Vector2(94.43193, 99.77197)
@@ -31,10 +32,10 @@ size = Vector2(153.42215, 211.80562)
 size = Vector2(114, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6cqst"]
-size = Vector2(35, 62)
+size = Vector2(37, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bswci"]
-size = Vector2(107.5, 110)
+size = Vector2(72, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xbjy"]
 size = Vector2(8722, 240)
@@ -50,6 +51,12 @@ size = Vector2(106, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3sih"]
 size = Vector2(100, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2koax"]
+size = Vector2(84, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgijt"]
+size = Vector2(84, 77)
 
 [node name="level1" type="Node2D" unique_id=161180971]
 
@@ -176,7 +183,7 @@ scale = Vector2(0.9999999, 1)
 shape = SubResource("RectangleShape2D_2tehw")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2118715107]
-position = Vector2(-133, 558)
+position = Vector2(-142, 384)
 script = ExtResource("1_bswci")
 speed = 600.0
 metadata/_edit_group_ = true
@@ -192,12 +199,12 @@ shape = SubResource("RectangleShape2D_15mv3")
 script = ExtResource("3_15mv3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Pivot/AxeHitbox" unique_id=1554134011]
-position = Vector2(55, -2.9999986)
-scale = Vector2(0.070393346, 0.08602152)
+position = Vector2(40.499996, -2.9999986)
+scale = Vector2(0.08074533, 0.08602152)
 texture = ExtResource("4_2y5yt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Pivot/AxeHitbox" unique_id=941025977]
-position = Vector2(54.5, -2)
+position = Vector2(40.5, -2)
 shape = SubResource("RectangleShape2D_6cqst")
 
 [node name="Hurtbox" type="Area2D" parent="Player/Pivot" unique_id=384581295]
@@ -206,13 +213,13 @@ collision_mask = 2
 script = ExtResource("8_2y5yt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Pivot/Hurtbox" unique_id=635132609]
-position = Vector2(-21.25, -26)
+position = Vector2(-17, -26)
 shape = SubResource("RectangleShape2D_bswci")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Pivot" unique_id=378282352]
-position = Vector2(-21, -26)
-scale = Vector2(0.21600002, 0.20793957)
-texture = ExtResource("2_5xbjy")
+position = Vector2(-13.499997, -26.499985)
+scale = Vector2(0.11125001, 0.10644534)
+texture = ExtResource("9_2aecg")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=2088393374]
 
@@ -498,3 +505,21 @@ script = ExtResource("3_15mv3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6/Hitbox" unique_id=1526866738]
 position = Vector2(22, -15)
 shape = SubResource("RectangleShape2D_e3sih")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=176760253]
+script = ExtResource("15_6dial")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=774860483]
+position = Vector2(837, 39)
+scale = Vector2(0.6484375, 0.59375)
+texture = ExtResource("1_014kd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1738704538]
+position = Vector2(838, 39)
+shape = SubResource("RectangleShape2D_2koax")
+
+[node name="InteractionArea" type="Area2D" parent="CharacterBody2D" unique_id=807709214]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/InteractionArea" unique_id=1629693714]
+position = Vector2(836, 38)
+shape = SubResource("RectangleShape2D_dgijt")

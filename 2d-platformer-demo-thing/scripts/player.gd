@@ -5,21 +5,26 @@ signal player_died
 
 @export var speed: float = 200.0
 @export var max_health: int = 100
-
+@export var death_screen_scene: PackedScene
 
 @onready var health: int = max_health
 @onready var axe_hitbox_shape = $Pivot/AxeHitbox/CollisionShape2D if has_node("Pivot/AxeHitbox/CollisionShape2D") else null
+@onready var axe_hitbox: Area2D = $Pivot/AxeHitbox if has_node("Pivot/AxeHitbox") else null
 @onready var hurtbox: Area2D = $Hurtbox if has_node("Hurtbox") else null
 @onready var pivot: Node2D = $Pivot if has_node("Pivot") else null
-@export var death_screen_scene: PackedScene
+@onready var sprite: Sprite2D = $Pivot/Sprite2D if has_node("Pivot/Sprite2D") else null
 
-# UI References
+# directional Textures
+var tex_up = preload("res://sprites/playerback.png")
+var tex_down = preload("res://sprites/playerfront.png")
+var tex_left = preload("res://sprites/playerleft.png")
+var tex_right = preload("res://sprites/playerright.png")
+
+# ui refs
 var health_bar: ProgressBar = null
 var portrait: TextureRect = null
 
-
-# Face sprites
-#var death_screen_scene = preload("res://scenes/respawn.gd")
+# healthbar sprites
 var face_full = preload("res://sprites/full_health.png")
 var face_half = preload("res://sprites/half_health.png")
 var face_low = preload("res://sprites/low_health.png")
@@ -54,15 +59,38 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
-	# --- FLIP EVERYTHING (SPRITE + WEAPON + HITBOX) TOGETHER ---
-	if pivot:
-		if direction.x < 0:
-			pivot.scale.x = -1 # Mirrors everything inside Pivot to the LEFT
-		elif direction.x > 0:
-			pivot.scale.x = 1  # Mirrors everything inside Pivot to the RIGHT
+	# directional sprite and weapon pivots
+	if direction != Vector2.ZERO:
+		update_sprite_direction(direction)
 
 	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("ui_accept"):
 		attack()
+
+func update_sprite_direction(dir: Vector2) -> void:
+	if not sprite:
+		return
+
+	# Prioritize horizontal or vertical movement
+	if abs(dir.x) > abs(dir.y):
+		if pivot: pivot.z_index = 0
+		if dir.x > 0:
+			sprite.texture = tex_right
+			sprite.flip_h = false # Keep sprite original
+			if pivot: pivot.scale.x = 1 # Normal weapon position
+		else:
+			sprite.texture = tex_left
+			sprite.flip_h = true # Counter-flip sprite so image isn't backwards!
+			if pivot: pivot.scale.x = -1 # Perfectly mirrors weapon & hitbox across the center line
+	else:
+		if pivot: pivot.scale.x = 1 # Reset pivot scale for vertical movement
+		sprite.flip_h = false
+		
+		if dir.y > 0:
+			sprite.texture = tex_down
+			if pivot: pivot.z_index = 1 # Axe in FRONT when moving down
+		else:
+			sprite.texture = tex_up
+			if pivot: pivot.z_index = -1 # Axe BEHIND when moving up
 
 func attack() -> void:
 	print("Player swings the axe!")
