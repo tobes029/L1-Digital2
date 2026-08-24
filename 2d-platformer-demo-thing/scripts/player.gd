@@ -76,13 +76,13 @@ func update_sprite_direction(dir: Vector2) -> void:
 		if dir.x > 0:
 			sprite.texture = tex_right
 			sprite.flip_h = false # Keep sprite original
-			if pivot: pivot.scale.x = 1 # Normal weapon position
+			if pivot: pivot.scale.x = 1 # default axe pos
 		else:
 			sprite.texture = tex_left
-			sprite.flip_h = true # Counter-flip sprite so image isn't backwards!
-			if pivot: pivot.scale.x = -1 # Perfectly mirrors weapon & hitbox across the center line
+			sprite.flip_h = true # counter flippage
+			if pivot: pivot.scale.x = -1 # mirrors weapon & hitbox across the center line
 	else:
-		if pivot: pivot.scale.x = 1 # Reset pivot scale for vertical movement
+		if pivot: pivot.scale.x = 1 # reset pivot scale for vertical movement
 		sprite.flip_h = false
 		
 		if dir.y > 0:
