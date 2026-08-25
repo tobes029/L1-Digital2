@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c7xcvcb8ao8ws"]
 
-[ext_resource type="Script" uid="uid://8p0j8xufurvn" path="res://scenes/respawn.gd" id="1_dwo6e"]
+[ext_resource type="Script" uid="uid://8p0j8xufurvn" path="res://scripts/respawn.gd" id="1_dwo6e"]
 [ext_resource type="Texture2D" uid="uid://k7vdjeo7x0xx" path="res://sprites/Death_screen.png" id="2_mqh5l"]
 
 [node name="Death screen" type="CanvasLayer" unique_id=1688203750]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://daj75l1uou467"]
 
-[ext_resource type="Script" uid="uid://cxmnaknbsrdyx" path="res://start_screen.gd" id="1_o7i0r"]
+[ext_resource type="Script" uid="uid://cxmnaknbsrdyx" path="res://scripts/start_screen.gd" id="1_o7i0r"]
 [ext_resource type="Texture2D" uid="uid://bxv0dowqc33yw" path="res://sprites/start screen.png" id="2_he1sj"]
 
 [node name="Start screen" type="CanvasLayer" unique_id=1688203750]
