@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://7mtnecyepibd"]
+
+[ext_resource type="Script" uid="uid://byg4v6h0xe2i6" path="res://scripts/npc.gd" id="1_xxcha"]
+[ext_resource type="Texture2D" uid="uid://dqe6wt3wud3dq" path="res://sprites/icon.svg" id="2_kh24r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7lw1"]
+radius = 35.0
+height = 74.0
+
+[node name="Npc" type="Area2D" unique_id=703457225]
+script = ExtResource("1_xxcha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=134996350]
+position = Vector2(1, 43)
+shape = SubResource("CapsuleShape2D_v7lw1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=673553166]
+position = Vector2(1, 46)
+scale = Vector2(0.3046875, 0.28125)
+texture = ExtResource("2_kh24r")
+
+[node name="Label" type="Label" parent="." unique_id=1649031894]
+offset_left = 86.0
+offset_top = 35.0
+offset_right = 126.0
+offset_bottom = 58.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1022384793]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=304759555]
+offset_left = 363.0
+offset_top = 394.0
+offset_right = 754.0
+offset_bottom = 598.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=813947573]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 14.0
+offset_right = 111.0
+offset_bottom = 37.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

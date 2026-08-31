@@ -1,33 +1,76 @@
-extends Node2D
+extends Area2D
 
-@export var npc_name: String = "Villager"
-@export_multiline var dialogue_text: String = "Hello traveler! Be careful in the woods."
+@onready var ui_tip: Label = $UITip
+@onready var chat_box: Panel = $CanvasLayer/ChatBox
+@onready var dialogue_text: Label = $CanvasLayer/ChatBox/DialogueText
 
-@onready var interaction_area: Area2D = $InteractionArea
+@export var dialogue_lines: Array[String] = [
+	"Why, hello there!", 
+	"I'm Jameroquai... NOT like the acid jazz group.", 
+	"Do you even know what the point of you being here is?", 
+	"Me neither.... best not to ask too many questions...", 
+	"You can press the space bar to attack. /n theres all sorts of bad guys around here",
+	"Tread carefully! /n My cousin Domingo is around here somewhere... /n He might be of some help."
+]
+@export var typing_speed: float = 0.04
 
-var is_player_in_range: bool = false
+var player_in_range: bool = false
+var current_line: int = 0
+var is_typing: bool = false
+var typing_tween: Tween
 
 func _ready() -> void:
-	# Connect Area2D collision signals
-	if interaction_area:
-		interaction_area.body_entered.connect(_on_interaction_area_body_entered)
-		interaction_area.body_exited.connect(_on_interaction_area_body_exited)
+	ui_tip.hide()
+	chat_box.hide()
 
-func _unhandled_input(event: InputEvent) -> void:
-	# Check if player presses the interact button while standing in range
-	if is_player_in_range and event.is_action_pressed("interact"):
-		interact()
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		player_in_range = true
+		if not chat_box.visible: 
+			ui_tip.show()
 
-func _on_interaction_area_body_entered(body: Node2D) -> void:
-	# Verify that the body entering the area is the Player
-	if body.is_in_group("player") or body.name == "Player":
-		is_player_in_range = true
-		print("Press 'E' to speak with ", npc_name)
+func _on_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		player_in_range = false
+		ui_tip.hide()
+		chat_box.hide()
+		is_typing = false
 
-func _on_interaction_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player") or body.name == "Player":
-		is_player_in_range = false
+func _input(event: InputEvent) -> void:
+	if player_in_range and event.is_action_pressed("ui_down"):
+		if not chat_box.visible:
+			ui_tip.hide()
+			chat_box.show()
+			current_line = 0
+			show_line()
+		elif is_typing:
+			finish_typing()
+		else:
+			current_line += 1
+			if current_line < dialogue_lines.size():
+				show_line()
+			else:
+				chat_box.hide()
+				ui_tip.show()
 
-func interact() -> void:
-	print(npc_name, ": ", dialogue_text)
-	# Trigger your dialogue box UI or custom NPC logic here!
+func show_line() -> void:
+	dialogue_text.text = dialogue_lines[current_line]
+	dialogue_text.visible_characters = -1 # (-1 means "show all")
+	dialogue_text.visible_ratio = 0.0 # Start at 0% visible
+	is_typing = true
+
+	if typing_tween and typing_tween.is_valid():
+		typing_tween.kill()
+
+	typing_tween = create_tween()
+	var duration = dialogue_lines[current_line].length() * typing_speed
+
+	typing_tween.tween_property(dialogue_text, "visible_ratio", 1.0, duration)
+	typing_tween.finished.connect(func(): is_typing = false)
+
+func finish_typing() -> void:
+	if typing_tween and typing_tween.is_valid():
+		typing_tween.kill()
+
+	dialogue_text.visible_ratio = 1.0 # Instantly show 100% of the text
+	is_typing = false
