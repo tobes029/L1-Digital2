@@ -14,8 +14,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1334781302]
-position = Vector2(571.5, 324.5)
-scale = Vector2(1.209375, 1.2363281)
+position = Vector2(578, 324)
+scale = Vector2(1.1958334, 1.2578125)
 texture = ExtResource("2_mqh5l")
 
 [node name="respawn" type="Button" parent="Control" unique_id=1804508669]
@@ -28,12 +28,13 @@ offset_top = 1165.52
 offset_right = 798.0
 offset_bottom = 637.0
 
-[node name="TextEdit" type="TextEdit" parent="Control/respawn" unique_id=1155185515]
+[node name="Label" type="Label" parent="Control/respawn" unique_id=858610677]
 layout_mode = 0
-offset_left = 178.0
-offset_top = 32.0
-offset_right = 260.0
-offset_bottom = 72.0
-text = "Respawn"
+offset_left = 182.0
+offset_top = 41.0
+offset_right = 268.0
+offset_bottom = 93.0
+text = "Respawn
+"
 
 [connection signal="pressed" from="Control/respawn" to="." method="_on_respawn_pressed"]

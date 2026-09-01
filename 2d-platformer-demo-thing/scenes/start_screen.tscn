@@ -14,8 +14,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1334781302]
-position = Vector2(576.5, 320)
-scale = Vector2(0.9973959, 0.9876543)
+position = Vector2(577.5, 322.99997)
+scale = Vector2(0.99913204, 0.99691355)
 texture = ExtResource("2_he1sj")
 
 [node name="start" type="Button" parent="Control" unique_id=1804508669]
