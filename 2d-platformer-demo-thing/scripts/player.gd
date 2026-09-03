@@ -15,13 +15,9 @@ signal player_died
 @onready var axe_hitbox: Area2D = $Pivot/AxeHitbox if has_node("Pivot/AxeHitbox") else null
 @onready var hurtbox: Area2D = $Hurtbox if has_node("Hurtbox") else null
 @onready var pivot: Node2D = $Pivot if has_node("Pivot") else null
-@onready var sprite: Sprite2D = $Pivot/Sprite2D if has_node("Pivot/Sprite2D") else null
 
-# Directional Textures
-var tex_up = preload("res://sprites/playerback.png")
-var tex_down = preload("res://sprites/playerfront.png")
-var tex_left = preload("res://sprites/playerleft.png")
-var tex_right = preload("res://sprites/playerright.png")
+# Node reference for AnimatedSprite2D
+@onready var anim_sprite: AnimatedSprite2D = $Pivot/AnimatedSprite2D if has_node("Pivot/AnimatedSprite2D") else null
 
 # UI References
 var health_bar: ProgressBar = null
@@ -31,6 +27,10 @@ var portrait: TextureRect = null
 var face_full = preload("res://sprites/full_health.png")
 var face_half = preload("res://sprites/half_health.png")
 var face_low = preload("res://sprites/low_health.png")
+
+# State variables
+var last_direction: Vector2 = Vector2.DOWN
+var is_attacking: bool = false
 
 func _ready() -> void:
 	get_tree().debug_collisions_hint = true
@@ -57,59 +57,80 @@ func _ready() -> void:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
 func _physics_process(_delta: float) -> void:
+	if is_attacking:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
 	move_and_slide()
 	
 	if direction != Vector2.ZERO:
-		update_sprite_direction(direction)
+		last_direction = direction
+		update_animation(direction, true)
+	else:
+		update_animation(last_direction, false)
 
 	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("ui_accept"):
 		attack()
 
-func update_sprite_direction(dir: Vector2) -> void:
-	if not sprite:
+func update_animation(dir: Vector2, is_moving: bool) -> void:
+	if not anim_sprite:
 		return
 
-	# Force pivot scale to stay standard 1.0
 	if pivot:
 		pivot.scale = Vector2.ONE
 
+	# Determines whether to call "walk_..." or "idle_..."
+	var anim_prefix = "walk_" if is_moving else "idle_"
+	var anim_to_play = ""
+
 	if abs(dir.x) > abs(dir.y):
-		# Horizontal movement
+		# Horizontal direction
 		if dir.x > 0:
-			sprite.texture = tex_right
-			sprite.flip_h = false
+			anim_to_play = anim_prefix + "right"
 			if axe_hitbox:
 				axe_hitbox.scale = Vector2.ONE
 				axe_hitbox.position = Vector2(axe_distance, 0)
 				axe_hitbox.z_index = 0
 		else:
-			sprite.texture = tex_left
-			sprite.flip_h = false
+			anim_to_play = anim_prefix + "left"
 			if axe_hitbox:
-				axe_hitbox.scale = Vector2(-1, 1) # Flip hitbox scale on X axis
+				axe_hitbox.scale = Vector2(-1, 1)
 				axe_hitbox.position = Vector2(-axe_distance, 0)
 				axe_hitbox.z_index = 0
 	else:
-		# Vertical movement
-		sprite.flip_h = false
+		# Vertical direction
 		if axe_hitbox:
 			axe_hitbox.scale = Vector2.ONE
 			axe_hitbox.position = Vector2(0, 0)
-			
+
 		if dir.y > 0:
-			sprite.texture = tex_down
-			if axe_hitbox: axe_hitbox.z_index = 1 # Axe in front of player
+			anim_to_play = anim_prefix + "back"
+			if axe_hitbox: axe_hitbox.z_index = 1
 		else:
-			sprite.texture = tex_up
-			if axe_hitbox: axe_hitbox.z_index = -1 # Axe behind player
+			anim_to_play = anim_prefix + "front"
+			if axe_hitbox: axe_hitbox.z_index = -1
+
+	# Safe play call: only attempts to play if the animation exists
+	if anim_sprite.sprite_frames and anim_sprite.sprite_frames.has_animation(anim_to_play):
+		anim_sprite.play(anim_to_play)
+	elif anim_sprite.sprite_frames and anim_sprite.sprite_frames.has_animation("default"):
+		anim_sprite.play("default")
 
 func attack() -> void:
+	if is_attacking:
+		return
+
+	is_attacking = true
+
 	if axe_hitbox_shape:
 		axe_hitbox_shape.disabled = false
 		await get_tree().create_timer(0.2).timeout
 		axe_hitbox_shape.disabled = true
+
+	is_attacking = false
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Hitbox or "damage" in area:
