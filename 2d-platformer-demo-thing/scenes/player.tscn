@@ -153,3 +153,7 @@ offset_top = 52.0
 offset_right = 275.0
 offset_bottom = 167.0
 texture = ExtResource("6_d2wvv")
+
+[node name="Label" type="Label" parent="HUD" unique_id=1103051702]
+offset_right = 40.0
+offset_bottom = 23.0

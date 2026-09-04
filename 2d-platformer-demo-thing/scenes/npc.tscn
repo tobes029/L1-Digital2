@@ -13,15 +13,16 @@ position = Vector2(1, 43)
 shape = SubResource("CapsuleShape2D_v7lw1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=673553166]
-position = Vector2(1, 42)
+position = Vector2(2, 47.000004)
 scale = Vector2(0.3046875, 0.28124997)
 texture = ExtResource("1_nh2m4")
 
 [node name="Label" type="Label" parent="." unique_id=1649031894]
-offset_left = 86.0
-offset_top = 35.0
-offset_right = 126.0
-offset_bottom = 58.0
+offset_left = -4.0
+offset_top = 8.0
+offset_right = 5.0
+offset_bottom = 31.0
+text = "E"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1022384793]
 
