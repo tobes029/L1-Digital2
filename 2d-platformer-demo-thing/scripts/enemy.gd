@@ -8,7 +8,7 @@ signal enemy_died
 @export var max_health: int = 30
 @export var attack_damage: int = 10
 @export var attack_cooldown: float = 1.5 # Seconds between attacks
-@export var score_value: int = 100 # How many points the player earns for defeating this enemy
+@export var score_value: int = 1 # How many points the player earns for defeating this enemy
 
 @onready var health: int = max_health 
 @onready var health_bar = $ProgressBar # Health bar UI
