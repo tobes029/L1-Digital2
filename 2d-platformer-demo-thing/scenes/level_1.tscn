@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://by7j3goda3om6" path="res://sprites/toupee.png" id="15_6dial"]
 [ext_resource type="Texture2D" uid="uid://bvexds8uarxtf" path="res://sprites/toupeeonshorthouse.png" id="16_7nomh"]
 [ext_resource type="PackedScene" uid="uid://7mtnecyepibd" path="res://scenes/npc.tscn" id="17_1s4pk"]
+[ext_resource type="Script" uid="uid://drmcdbxohyimq" path="res://scenes/npc2.gd" id="20_isj1j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_isj1j"]
 texture = ExtResource("2_2cbcq")
@@ -708,16 +709,29 @@ texture = ExtResource("16_7nomh")
 
 [node name="Toupeeonshorthouse4" type="Sprite2D" parent="." unique_id=370364340]
 z_index = 2
-position = Vector2(7240.75, -387.375)
-scale = Vector2(4.073662, 3.5473218)
+position = Vector2(7235, -388)
+scale = Vector2(4.089285, 3.6000006)
 texture = ExtResource("16_7nomh")
 
 [node name="Toupeeonshorthouse5" type="Sprite2D" parent="." unique_id=1029897760]
 z_index = 2
-position = Vector2(7218.5, -3087.0002)
-scale = Vector2(4.156252, 3.3999999)
+position = Vector2(7219.25, -3116)
+scale = Vector2(4.158483, 3.3999999)
 texture = ExtResource("16_7nomh")
 
 [node name="Npc" parent="." unique_id=703457225 instance=ExtResource("17_1s4pk")]
 position = Vector2(701, -84)
 scale = Vector2(4.156252, 3.3999999)
+
+[node name="Npc2" parent="." unique_id=33103812 instance=ExtResource("17_1s4pk")]
+position = Vector2(3556, -2599)
+scale = Vector2(4.156252, 3.3999999)
+script = ExtResource("20_isj1j")
+dialogue_lines = Array[String](["Whassup, I'm Domingo", "You met my cousin? He's a loser. 
+Dosen't even own any properties. 
+Or investments.", "Do you invest? 
+I've got this epic new crypto system", "It feeds profits into the domestic market... 
+Gets me mad cash 
+ ..Yo", "But listen amigo, theres big things around here. 
+Like a way out.", "If you're hurting theres bound to be some chow around 
+and maybe even a way out...."])

@@ -5,12 +5,12 @@ extends Area2D
 @onready var dialogue_text: Label = get_node_or_null("%DialogueText")
 
 @export var dialogue_lines: Array[String] = [
-	"Why, hello there!", 
-	"I'm Jameroquai... NOT like the acid jazz group.", 
-	"Do you even know what the point of you being here is?", 
-	"Me neither.... best not to ask too many questions...", 
-	"You can press the space bar to attack. \nThere's all sorts of bad guys around here.",
-	"Tread carefully! \nMy cousin Domingo is around here somewhere... \nHe might be of some help."
+	"Whassup, I'm Domingo", 
+	"You met my cousin? He's a loser. \nDosen't even own any properties. \nOr investments.", 
+	"Do you invest? \nI've got this epic new crypto system", 
+	"It feeds profits into the domestic market... \nGets me mad cash \n ..Yo", 
+	"But listen amigo, theres big things around here. \nLike a way out.",
+	"If you're hurting theres bound to be some chow around \nand maybe even a way out...."
 ]
 @export var typing_speed: float = 0.04
 
