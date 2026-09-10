@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf75y5g4q8jpt"
-path="res://.godot/imported/appology.png-ebe5ca941e115f2369bd56b2dd142ac2.ctex"
+uid="uid://drpa7qjku8utw"
+path="res://.godot/imported/domingo.png-9d65cac93b7d69e3727bff8a099f5e12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/appology.png"
-dest_files=["res://.godot/imported/appology.png-ebe5ca941e115f2369bd56b2dd142ac2.ctex"]
+source_file="res://sprites/domingo.png"
+dest_files=["res://.godot/imported/domingo.png-9d65cac93b7d69e3727bff8a099f5e12.ctex"]
 
 [params]
 

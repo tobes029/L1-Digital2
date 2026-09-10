@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7mtnecyepibd"]
 
 [ext_resource type="Script" uid="uid://byg4v6h0xe2i6" path="res://scripts/npc.gd" id="1_abqhh"]
-[ext_resource type="Texture2D" uid="uid://dqe6wt3wud3dq" path="res://sprites/icon.svg" id="1_nh2m4"]
+[ext_resource type="Texture2D" uid="uid://bg5n8b0wg7pt1" path="res://sprites/Jameroquai.png" id="2_abqhh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7lw1"]
 radius = 35.0
@@ -16,15 +16,15 @@ position = Vector2(0, 43)
 shape = SubResource("CapsuleShape2D_v7lw1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=673553166]
-position = Vector2(2, 47.000004)
-scale = Vector2(0.3046875, 0.28124997)
-texture = ExtResource("1_nh2m4")
+position = Vector2(-1.999996, 34.5)
+scale = Vector2(0.3839286, 0.36160713)
+texture = ExtResource("2_abqhh")
 
 [node name="UITip" type="Label" parent="." unique_id=1649031894]
 offset_left = -4.0
-offset_top = 8.0
+offset_top = 1.0
 offset_right = 5.0
-offset_bottom = 31.0
+offset_bottom = 24.0
 text = "E"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1022384793]

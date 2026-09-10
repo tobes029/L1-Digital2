@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bpoagbo2m3hix"]
+
+[ext_resource type="Script" uid="uid://drmcdbxohyimq" path="res://scripts/npc2.gd" id="1_o1r1m"]
+[ext_resource type="Texture2D" uid="uid://drpa7qjku8utw" path="res://sprites/domingo.png" id="2_bmnyl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6cqst"]
+radius = 137.0
+height = 460.0
+
+[node name="Npc" type="Area2D" unique_id=703457225]
+script = ExtResource("1_o1r1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676405689]
+position = Vector2(-8, 30)
+shape = SubResource("CapsuleShape2D_6cqst")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=673553166]
+position = Vector2(16.000002, 48)
+scale = Vector2(1.4754466, 1.6897321)
+texture = ExtResource("2_bmnyl")
+
+[node name="UITip" type="Label" parent="." unique_id=1649031894]
+offset_left = -14.0
+offset_top = -194.0
+offset_right = 8.0
+offset_bottom = -139.0
+theme_override_font_sizes/font_size = 40
+text = "E"
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1022384793]
+
+[node name="Chatbox" type="Panel" parent="CanvasLayer" unique_id=304759555]
+offset_left = 345.0
+offset_top = 396.0
+offset_right = 784.0
+offset_bottom = 600.0
+
+[node name="DialogueText" type="Label" parent="CanvasLayer" unique_id=813947573]
+offset_left = 358.0
+offset_top = 414.0
+offset_right = 764.0
+offset_bottom = 585.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

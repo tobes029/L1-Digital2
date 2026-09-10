@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqyjwb0twd5fv"
-path="res://.godot/imported/Screenshot 2026-06-02 12.11.27.png-1a24dd270a0b33b50b6fa8fcef064bea.ctex"
+uid="uid://bg5n8b0wg7pt1"
+path="res://.godot/imported/Jameroquai.png-d843c1eec3de4ec56c8b2003757cb233.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screenshot 2026-06-02 12.11.27.png"
-dest_files=["res://.godot/imported/Screenshot 2026-06-02 12.11.27.png-1a24dd270a0b33b50b6fa8fcef064bea.ctex"]
+source_file="res://sprites/Jameroquai.png"
+dest_files=["res://.godot/imported/Jameroquai.png-d843c1eec3de4ec56c8b2003757cb233.ctex"]
 
 [params]
 
