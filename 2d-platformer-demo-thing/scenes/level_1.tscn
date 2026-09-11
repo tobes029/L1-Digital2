@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bvexds8uarxtf" path="res://sprites/toupeeonshorthouse.png" id="16_7nomh"]
 [ext_resource type="PackedScene" uid="uid://7mtnecyepibd" path="res://scenes/npc.tscn" id="17_1s4pk"]
 [ext_resource type="PackedScene" uid="uid://bpoagbo2m3hix" path="res://scenes/npc2.tscn" id="20_isj1j"]
+[ext_resource type="Texture2D" uid="uid://7hhr56so3pnc" path="res://sprites/bushwithdoor.png" id="21_so66j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_isj1j"]
 texture = ExtResource("2_2cbcq")
@@ -252,7 +253,7 @@ scale = Vector2(0.9999999, 1)
 shape = SubResource("RectangleShape2D_2tehw")
 
 [node name="Player" parent="." unique_id=1018897185 instance=ExtResource("8_7gny6")]
-position = Vector2(-124.000015, 504.00006)
+position = Vector2(-1, 509)
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=1479048436]
 position = Vector2(-643, 472)
@@ -725,3 +726,8 @@ scale = Vector2(4.156252, 3.3999999)
 
 [node name="Npc2" parent="." unique_id=1380357853 instance=ExtResource("20_isj1j")]
 position = Vector2(3517, -2388)
+
+[node name="Bushwithdoor" type="Sprite2D" parent="." unique_id=838843790]
+position = Vector2(6228.5, -4502.5)
+scale = Vector2(1.0729169, 1.0580351)
+texture = ExtResource("21_so66j")
