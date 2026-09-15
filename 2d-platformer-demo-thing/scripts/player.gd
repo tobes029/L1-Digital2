@@ -182,5 +182,9 @@ func _update_portrait() -> void:
 		portrait.texture = face_low
 
 func die() -> void:
+	# Safely access ScoreManager Autoload node and reset score to 0
+	if get_tree().root.has_node("ScoreManager"):
+		get_tree().root.get_node("ScoreManager").reset_score()
+
 	player_died.emit()
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
