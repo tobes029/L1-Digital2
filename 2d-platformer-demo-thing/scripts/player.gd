@@ -176,7 +176,7 @@ func _update_portrait() -> void:
 	
 	if health_percent > 0.6:
 		portrait.texture = face_full
-	elif health_percent > 0.25:
+	elif health_percent > 0.30:
 		portrait.texture = face_half
 	else:
 		portrait.texture = face_low
@@ -188,3 +188,14 @@ func die() -> void:
 
 	player_died.emit()
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
+	
+func heal(amount: int) -> void:
+	# Restore health up to the maximum limit
+	health = min(health + amount, max_health)
+	
+	# Update the health bar UI
+	if health_bar:
+		health_bar.value = health
+		
+	# Update the player portrait face
+	_update_portrait()

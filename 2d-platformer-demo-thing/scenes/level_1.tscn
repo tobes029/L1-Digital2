@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://7mtnecyepibd" path="res://scenes/npc.tscn" id="17_1s4pk"]
 [ext_resource type="PackedScene" uid="uid://bpoagbo2m3hix" path="res://scenes/npc2.tscn" id="20_isj1j"]
 [ext_resource type="Texture2D" uid="uid://7hhr56so3pnc" path="res://sprites/bushwithdoor.png" id="21_so66j"]
+[ext_resource type="PackedScene" uid="uid://05uk56qdadm7" path="res://scenes/health_potion.tscn" id="22_tr1x6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_isj1j"]
 texture = ExtResource("2_2cbcq")
@@ -60,7 +61,7 @@ sources/0 = SubResource("TileSetAtlasSource_x2xxo")
 size = Vector2(75.93801, 97.6555)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khoja"]
-size = Vector2(422.56503, 105.5379)
+size = Vector2(425.89508, 105.5379)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ry35u"]
 size = Vector2(353.1089, 98.96911)
@@ -116,30 +117,6 @@ position = Vector2(3769, -1861.7501)
 scale = Vector2(8.408174, 6.88036)
 texture = ExtResource("11_2os1m")
 
-[node name="TextEdit" type="TextEdit" parent="temporary background" unique_id=1332862041]
-offset_left = -309.93652
-offset_top = 277.49304
-offset_right = -133.79837
-offset_bottom = 319.53302
-text = "Spacebar to Attack!
-
-"
-placeholder_text = "Spacebar to attack
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="TextEdit2" type="TextEdit" parent="temporary background" unique_id=1907130380]
-offset_left = 291.26422
-offset_top = 292.82013
-offset_right = 406.27136
-offset_bottom = 332.96246
-text = "UNFINISHED
-
-"
-placeholder_text = "Spacebar to attack
-"
-metadata/_edit_use_anchors_ = true
-
 [node name="House" type="StaticBody2D" parent="temporary background" unique_id=1761321292]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House" unique_id=77201816]
@@ -162,8 +139,8 @@ scale = Vector2(0.1051107, 0.11347051)
 texture = ExtResource("5_x2xxo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temporary background/House7" unique_id=344565753]
-position = Vector2(-234.83101, -164.43753)
-scale = Vector2(0.9999999, 1)
+position = Vector2(-233.16603, -164.43756)
+scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_khoja")
 
 [node name="House6" type="StaticBody2D" parent="temporary background" unique_id=972231223]
@@ -728,6 +705,22 @@ scale = Vector2(4.156252, 3.3999999)
 position = Vector2(3517, -2388)
 
 [node name="Bushwithdoor" type="Sprite2D" parent="." unique_id=838843790]
-position = Vector2(6228.5, -4502.5)
+position = Vector2(6228.5, -4502.5005)
 scale = Vector2(1.0729169, 1.0580351)
 texture = ExtResource("21_so66j")
+
+[node name="HealthPotion" parent="." unique_id=85447295 instance=ExtResource("22_tr1x6")]
+position = Vector2(7637, 533.00006)
+scale = Vector2(1.0729169, 1.0580351)
+
+[node name="HealthPotion2" parent="." unique_id=786166817 instance=ExtResource("22_tr1x6")]
+position = Vector2(5802, -3225.0002)
+scale = Vector2(1.0729169, 1.0580351)
+
+[node name="HealthPotion3" parent="." unique_id=811587756 instance=ExtResource("22_tr1x6")]
+position = Vector2(-29, -4082.0002)
+scale = Vector2(1.0729169, 1.0580351)
+
+[node name="HealthPotion4" parent="." unique_id=1639518513 instance=ExtResource("22_tr1x6")]
+position = Vector2(60, -2043)
+scale = Vector2(1.0729169, 1.0580351)

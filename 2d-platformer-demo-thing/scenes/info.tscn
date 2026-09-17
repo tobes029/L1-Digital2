@@ -1,11 +1,13 @@
-[gd_scene format=3 uid="uid://daj75l1uou467"]
+[gd_scene format=3 uid="uid://bdh8i7cnc7rlj"]
 
-[ext_resource type="Script" uid="uid://cxmnaknbsrdyx" path="res://scripts/start_screen.gd" id="1_o7i0r"]
-[ext_resource type="Texture2D" uid="uid://bxv0dowqc33yw" path="res://sprites/start screen.png" id="2_he1sj"]
+[ext_resource type="Script" uid="uid://dk8vqg0ebkycw" path="res://scripts/info.gd" id="1_1t52y"]
+[ext_resource type="Texture2D" uid="uid://da7a71apytsop" path="res://sprites/info.png" id="2_kin2u"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3wikv"]
 
 [node name="Start screen" type="CanvasLayer" unique_id=1688203750]
 process_mode = 3
-script = ExtResource("1_o7i0r")
+script = ExtResource("1_1t52y")
 
 [node name="Control" type="Control" parent="." unique_id=1251845379]
 layout_mode = 3
@@ -16,18 +18,17 @@ offset_bottom = 40.0
 [node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1334781302]
 position = Vector2(577.00006, 322.99997)
 scale = Vector2(0.99913204, 0.99691355)
-texture = ExtResource("2_he1sj")
+texture = ExtResource("2_kin2u")
 
 [node name="start" type="Button" parent="Control" unique_id=1804508669]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -28.157001
 anchor_top = -15.863001
-offset_left = 1506.28
-offset_top = 1124.52
+offset_left = 1693.28
+offset_top = 1190.52
 offset_right = 763.0
-offset_bottom = 619.0
+offset_bottom = 625.0
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
 theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
@@ -41,13 +42,7 @@ theme_override_colors/icon_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 0)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-
-[node name="Button" type="Button" parent="." unique_id=1306662581]
-offset_left = 794.0
-offset_top = 570.0
-offset_right = 861.0
-offset_bottom = 619.0
-text = "INFO"
+text = "BACK TO MAIN TITLE"
+icon = SubResource("CanvasTexture_3wikv")
 
 [connection signal="pressed" from="Control/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
