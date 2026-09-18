@@ -19,6 +19,10 @@ config/icon="res://sprites/icon.svg"
 
 ScoreManager="*uid://01j4np8xo7v"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [editor]
 
 version_control/autoload_on_startup=true

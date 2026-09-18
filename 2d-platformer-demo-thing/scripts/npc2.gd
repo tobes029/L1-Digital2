@@ -6,11 +6,13 @@ extends Area2D
 
 @export var dialogue_lines: Array[String] = [
 	"Whassup, I'm Domingo", 
-	"You met my cousin? He's a loser. \nDosen't even own any properties. \nOr investments.", 
-	"Do you invest? \nI've got this epic new crypto system", 
+	"You met my cousin? He's a loser. \nDosen't even own any properties. \nOr investments.",
+	"Do you invest? \nI've got this epic new crypto system",
 	"It feeds profits into the domestic market... \nGets me mad cash \n ..Yo", 
 	"But listen amigo, theres big things around here. \nLike a way out.",
-	"If you're hurting theres bound to be some chow around \nand maybe even a way out...."
+	"If you're hurting theres bound to be some chow around \nand maybe even a way out....",
+	"And hey! \n Remember this game isn't finished.",
+	"If you judge it \n I will find you."
 ]
 @export var typing_speed: float = 0.04
 
