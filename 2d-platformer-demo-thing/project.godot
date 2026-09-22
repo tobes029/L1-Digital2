@@ -21,7 +21,7 @@ ScoreManager="*uid://01j4np8xo7v"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor]
 
