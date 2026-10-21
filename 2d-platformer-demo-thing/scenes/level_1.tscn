@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bpoagbo2m3hix" path="res://scenes/npc2.tscn" id="20_isj1j"]
 [ext_resource type="Texture2D" uid="uid://7hhr56so3pnc" path="res://sprites/bushwithdoor.png" id="21_so66j"]
 [ext_resource type="PackedScene" uid="uid://05uk56qdadm7" path="res://scenes/health_potion.tscn" id="22_tr1x6"]
+[ext_resource type="PackedScene" uid="uid://i4hmaxxqwxk3" path="res://npc3.tscn" id="23_d5akn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_isj1j"]
 texture = ExtResource("2_2cbcq")
@@ -724,3 +725,6 @@ scale = Vector2(1.0729169, 1.0580351)
 [node name="HealthPotion4" parent="." unique_id=1639518513 instance=ExtResource("22_tr1x6")]
 position = Vector2(60, -2043)
 scale = Vector2(1.0729169, 1.0580351)
+
+[node name="Npc3" parent="." unique_id=1638939047 instance=ExtResource("23_d5akn")]
+position = Vector2(99, 414)
