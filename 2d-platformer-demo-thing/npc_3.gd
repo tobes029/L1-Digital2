@@ -8,7 +8,7 @@ extends Area2D
 	"I did not fight in the war 60 years ago\nFor a bleeding pink house!",
 	"You ever hear a man scream with no lungs?\nI looked to my left on that day\n and was thankful that I only need a cane to walk",
 	"Anyways, could you fix my phone?\nDarn things broken.",
-	"I've got about 248 tabs open and my brightness is on full\nI cant get the damned Bookface to work.",
+	"I've got about 98 tabs open and my brightness is on full\nI cant get the damned Bookface to work.",
 	
 ]
 @export var typing_speed: float = 0.04

@@ -4,26 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://cxq5xgurafai" path="res://sprites/old_man-removebg-preview (1).png" id="2_2ee5g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6cqst"]
-radius = 114.0
-height = 374.0
+radius = 217.0
+height = 434.0
 
 [node name="Npc" type="Area2D" unique_id=703457225]
 script = ExtResource("1_2ee5g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676405689]
-position = Vector2(-8, 30)
+position = Vector2(-9, 31)
 shape = SubResource("CapsuleShape2D_6cqst")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=673553166]
-position = Vector2(-2.9999995, 44)
+texture_filter = 1
+position = Vector2(6.0000005, 44)
 scale = Vector2(0.49144834, 0.48909974)
 texture = ExtResource("2_2ee5g")
 
 [node name="UITip" type="Label" parent="." unique_id=1649031894]
-offset_left = -23.0
-offset_top = -171.0
-offset_right = -1.0
-offset_bottom = -116.0
+offset_left = -18.0
+offset_top = -163.0
+offset_right = 4.0
+offset_bottom = -108.0
 theme_override_font_sizes/font_size = 40
 text = "E"
 metadata/_edit_use_anchors_ = true

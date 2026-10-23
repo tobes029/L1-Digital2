@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal health_changed(current_health)
 signal player_died
 
-@export var speed: float = 200.0
+@export var speed: float = 600.0
 @export var max_health: int = 100
 @export var death_screen_scene: PackedScene
 
@@ -30,6 +30,7 @@ signal player_died
 # UI References
 var health_bar: ProgressBar = null
 var portrait: TextureRect = null
+@onready var message_label: Label = $HUD/MessageLabel if has_node("HUD/MessageLabel") else null
 
 # Face sprites
 var face_full = preload("res://sprites/full_health.png")
@@ -199,3 +200,42 @@ func heal(amount: int) -> void:
 		
 	# Update the player portrait face
 	_update_portrait()
+
+func boost_speed(amount: float, max_speed_cap: float = 10000000000000000000.0) -> void:
+	# Permanently increases speed up to maximum cap
+	speed = min(speed + amount, max_speed_cap)
+
+# Changed default duration from 2.0 to 4.0 seconds
+func show_message(text: String, duration: float = 4.0) -> void:
+	# Try to find existing HUD label
+	var label: Label = null
+	if has_node("HUD/MessageLabel"):
+		label = $HUD/MessageLabel
+	else:
+		# Fallback: Create a temporary CanvasLayer and Label dynamically
+		var canvas = CanvasLayer.new()
+		label = Label.new()
+		label.name = "TempMessageLabel"
+		
+		# Center the label near the top of the screen
+		label.anchors_preset = Control.PRESET_CENTER_TOP
+		label.position = Vector2(-100, 50)
+		label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+		
+		canvas.add_child(label)
+		add_child(canvas)
+
+	# Display text
+	label.text = text
+	label.visible = true
+
+	# Wait for specified duration (now 4 seconds)
+	await get_tree().create_timer(duration).timeout
+
+	# Clean up
+	if label and is_instance_valid(label):
+		if label.name == "TempMessageLabel":
+			label.get_parent().queue_free() # Remove dynamic canvas
+		else:
+			label.text = ""
+			label.visible = false

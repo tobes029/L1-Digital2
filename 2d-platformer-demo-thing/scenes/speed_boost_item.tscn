@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dchk00jrcsk28"]
+
+[ext_resource type="Script" uid="uid://tqf6e03bnlcw" path="res://scenes/speed_boost_item.gd" id="1_aqr1p"]
+[ext_resource type="Texture2D" uid="uid://cshcpm0eae7g4" path="res://scenes/CAN.png" id="2_aqr1p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6cqst"]
+radius = 111.0
+
+[node name="SpeedBoostItem" type="Area2D" unique_id=904805062]
+script = ExtResource("1_aqr1p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=62307229]
+texture = ExtResource("2_aqr1p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1222122469]
+shape = SubResource("CircleShape2D_6cqst")

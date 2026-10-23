@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bg5n8b0wg7pt1" path="res://sprites/Jameroquai.png" id="2_abqhh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7lw1"]
-radius = 35.0
-height = 74.0
+radius = 58.0
+height = 116.0
 
 [node name="Npc" type="Area2D" unique_id=703457225]
 script = ExtResource("1_abqhh")
