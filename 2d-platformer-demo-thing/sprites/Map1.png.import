@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cshcpm0eae7g4"
-path="res://.godot/imported/CAN.png-4f3468bb554bc79a845ef8fc609417e6.ctex"
+uid="uid://c0vb02ay8rstv"
+path="res://.godot/imported/Map1.png-c1137481bf15ceba257aef179008f36d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CAN.png"
-dest_files=["res://.godot/imported/CAN.png-4f3468bb554bc79a845ef8fc609417e6.ctex"]
+source_file="res://sprites/Map1.png"
+dest_files=["res://.godot/imported/Map1.png-c1137481bf15ceba257aef179008f36d.ctex"]
 
 [params]
 

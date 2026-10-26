@@ -232,7 +232,7 @@ scale = Vector2(0.9999999, 1)
 shape = SubResource("RectangleShape2D_2tehw")
 
 [node name="Player" parent="." unique_id=1018897185 instance=ExtResource("8_7gny6")]
-position = Vector2(-57, 495)
+position = Vector2(-95.99951, 482.00003)
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=1479048436]
 position = Vector2(-643, 472)

@@ -32,6 +32,10 @@ var health_bar: ProgressBar = null
 var portrait: TextureRect = null
 @onready var message_label: Label = $HUD/MessageLabel if has_node("HUD/MessageLabel") else null
 
+# Map UI References
+var map_button: Button = null
+@onready var map_overlay: Control = $HUD/MapOverlay if has_node("HUD/MapOverlay") else null
+
 # Face sprites
 var face_full = preload("res://sprites/full_health.png")
 var face_half = preload("res://sprites/half_health.png")
@@ -43,6 +47,11 @@ var is_attacking: bool = false
 
 func _ready() -> void:
 	z_index = 2
+
+	# Restore saved position from Global Autoload if returning from map
+	if get_node_or_null("/root/Global") and Global.position_saved:
+		global_position = Global.last_player_position
+		print("Restored player position to: ", global_position)
 
 	if axe_hitbox_shape:
 		axe_hitbox_shape.disabled = true
@@ -65,6 +74,37 @@ func _ready() -> void:
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
+	# --- DYNAMIC MAP BUTTON FINDER ---
+	map_button = _find_map_button()
+	if map_button:
+		print("MapButton found! Signal connected successfully.")
+		map_button.pressed.connect(_on_map_button_pressed)
+	else:
+		print("WARNING: MapButton could not be found under HUD.")
+
+	if map_overlay:
+		map_overlay.visible = false
+
+# Helper function to find MapButton regardless of nesting
+func _find_map_button() -> Button:
+	if has_node("HUD/MapButton"):
+		return $HUD/MapButton as Button
+	elif has_node("HUD/CanvasLayer/MapButton"):
+		return $HUD/CanvasLayer/MapButton as Button
+	elif has_node("HUD/Control/MapButton"):
+		return $HUD/Control/MapButton as Button
+	
+	# Fallback recursive search inside HUD
+	if has_node("HUD"):
+		var hud_node = $HUD
+		for child in hud_node.get_children():
+			if child.name == "MapButton" and child is Button:
+				return child as Button
+			for grandchild in child.get_children():
+				if grandchild.name == "MapButton" and grandchild is Button:
+					return grandchild as Button
+	return null
+
 func _physics_process(_delta: float) -> void:
 	if is_attacking:
 		velocity = Vector2.ZERO
@@ -83,6 +123,39 @@ func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("ui_accept"):
 		attack()
+
+func _on_map_button_pressed() -> void:
+	# Save current position into Global Autoload before leaving scene
+	if get_node_or_null("/root/Global"):
+		Global.last_player_position = global_position
+		Global.position_saved = true
+		print("Saved player position to Global: ", global_position)
+
+	print("MapButton pressed! Searching for map scene file...")
+
+	var possible_paths = [
+		"res://scenes/map.tscn",
+		"res://scenes/Map.tscn",
+		"res://map.tscn",
+		"res://Map.tscn",
+		"res://Scenes/map.tscn",
+		"res://Scenes/Map.tscn"
+	]
+
+	var valid_path = ""
+
+	for path in possible_paths:
+		if FileAccess.file_exists(path):
+			valid_path = path
+			break
+
+	if valid_path != "":
+		print("SUCCESS: Found map scene at '", valid_path, "'! Changing scene now...")
+		var error_code = get_tree().change_scene_to_file(valid_path)
+		if error_code != OK:
+			print("ERROR: Could not change scene. Godot Error Code: ", error_code)
+	else:
+		print("ERROR: Could not find map scene in any common locations!")
 
 func update_direction_and_axe(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
@@ -122,29 +195,24 @@ func attack() -> void:
 
 	is_attacking = true
 
-	# Enable hitbox shape
 	if axe_hitbox_shape:
 		axe_hitbox_shape.disabled = false
 
-	# Show visual indicator
 	var temp_rect: ColorRect = null
 	if axe_flash:
 		axe_flash.visible = true
 	elif axe_hitbox:
-		# Fallback: create visual shape in code if node isn't found
 		temp_rect = ColorRect.new()
 		temp_rect.size = Vector2(32, 50)
 		temp_rect.position = Vector2(23, -25)
-		temp_rect.color = Color(1, 0, 0, 0.5) # Semi-transparent red
+		temp_rect.color = Color(1, 0, 0, 0.5)
 		axe_hitbox.add_child(temp_rect)
 
 	await get_tree().create_timer(0.2).timeout
 
-	# Disable hitbox shape
 	if axe_hitbox_shape:
 		axe_hitbox_shape.disabled = true
 
-	# Hide or remove visual indicator
 	if axe_flash:
 		axe_flash.visible = false
 	elif temp_rect:
@@ -183,7 +251,6 @@ func _update_portrait() -> void:
 		portrait.texture = face_low
 
 func die() -> void:
-	# Safely access ScoreManager Autoload node and reset score to 0
 	if get_tree().root.has_node("ScoreManager"):
 		get_tree().root.get_node("ScoreManager").reset_score()
 
@@ -191,33 +258,25 @@ func die() -> void:
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
 	
 func heal(amount: int) -> void:
-	# Restore health up to the maximum limit
 	health = min(health + amount, max_health)
 	
-	# Update the health bar UI
 	if health_bar:
 		health_bar.value = health
 		
-	# Update the player portrait face
 	_update_portrait()
 
 func boost_speed(amount: float, max_speed_cap: float = 10000000000000000000.0) -> void:
-	# Permanently increases speed up to maximum cap
 	speed = min(speed + amount, max_speed_cap)
 
-# Changed default duration from 2.0 to 4.0 seconds
 func show_message(text: String, duration: float = 4.0) -> void:
-	# Try to find existing HUD label
 	var label: Label = null
 	if has_node("HUD/MessageLabel"):
 		label = $HUD/MessageLabel
 	else:
-		# Fallback: Create a temporary CanvasLayer and Label dynamically
 		var canvas = CanvasLayer.new()
 		label = Label.new()
 		label.name = "TempMessageLabel"
 		
-		# Center the label near the top of the screen
 		label.anchors_preset = Control.PRESET_CENTER_TOP
 		label.position = Vector2(-100, 50)
 		label.grow_horizontal = Control.GROW_DIRECTION_BOTH
@@ -225,17 +284,14 @@ func show_message(text: String, duration: float = 4.0) -> void:
 		canvas.add_child(label)
 		add_child(canvas)
 
-	# Display text
 	label.text = text
 	label.visible = true
 
-	# Wait for specified duration (now 4 seconds)
 	await get_tree().create_timer(duration).timeout
 
-	# Clean up
 	if label and is_instance_valid(label):
 		if label.name == "TempMessageLabel":
-			label.get_parent().queue_free() # Remove dynamic canvas
+			label.get_parent().queue_free()
 		else:
 			label.text = ""
 			label.visible = false

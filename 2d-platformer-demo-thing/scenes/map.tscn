@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b14hkkl2mbgbl"]
+
+[ext_resource type="Script" uid="uid://cl08p01d88bgi" path="res://scripts/map.gd" id="1_paxxb"]
+[ext_resource type="Texture2D" uid="uid://c0vb02ay8rstv" path="res://sprites/Map1.png" id="2_gldc4"]
+
+[node name="Map" type="CanvasLayer" unique_id=1688203750]
+process_mode = 3
+script = ExtResource("1_paxxb")
+
+[node name="Control" type="Control" parent="." unique_id=1251845379]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1334781302]
+position = Vector2(578, 325.5)
+scale = Vector2(0.99652773, 0.98919743)
+texture = ExtResource("2_gldc4")
+
+[node name="button" type="Button" parent="Control" unique_id=1578108427]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -28.157001
+anchor_top = -15.863001
+offset_left = 1547.28
+offset_top = 1190.52
+offset_right = 743.0
+offset_bottom = 637.0
+
+[node name="Label" type="Label" parent="Control/button" unique_id=858610677]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 29.0
+offset_right = 268.0
+offset_bottom = 93.0
+text = "back 2 game
+"
+
+[connection signal="pressed" from="Control/button" to="." method="_on_respawn_pressed"]
