@@ -1,7 +1,7 @@
 extends Area2D
 
 # The amount of health this potion restores
-@export var heal_amount: int = 25
+@export var heal_amount: int = 50
 
 func _ready() -> void:
 	# Connect the body_entered signal so it triggers when the player walks over it

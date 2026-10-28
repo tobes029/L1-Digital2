@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://vbfd82lajvjs"]
+
+[ext_resource type="Texture2D" uid="uid://cxq5xgurafai" path="res://sprites/old_man-removebg-preview (1).png" id="1_mwn6m"]
+
+[node name="END" type="Node2D" unique_id=1834344968]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=280547353]
+position = Vector2(467.75, 322)
+scale = Vector2(2.9421053, 1)
+texture = ExtResource("1_mwn6m")
